@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package shop;
+
+// 商品信息
+message Product {
+  int32 id = 1;
+  string name = 2;
+  double price = 3;
+  int32 stock = 4;
+}
+
+// 查询条件
+message ProductQuery {
+  string keyword = 1;
+  double min_price = 2;
+  double max_price = 3;
+}
+
+// 商品列表响应
+message ProductList {
+  repeated Product items = 1;
+  int32 total = 2;
+}
