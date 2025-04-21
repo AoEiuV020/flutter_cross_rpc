@@ -23,9 +23,9 @@ scripts:
     packageFilters:
       dependsOn: build_runner
   proto:
-    exec: protoc --proto_path=protos --dart_out=lib/src/generated protos/*.proto
+    exec: protoc --proto_path=protos --dart_out=grpc:lib/src/generated protos/*.proto
     packageFilters:
-      dependsOn: protobuf
+      dirExists: protos
   analyze:
     exec: dart analyze .
   fix:

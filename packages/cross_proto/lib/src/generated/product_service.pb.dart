@@ -9,12 +9,9 @@
 // ignore_for_file: non_constant_identifier_names, prefer_final_fields
 // ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
-import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
-
-import 'product.pb.dart' as $0;
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
@@ -67,21 +64,6 @@ class GetProductRequest extends $pb.GeneratedMessage {
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
   void clearId() => $_clearField(1);
-}
-
-/// 商品服务定义
-class ProductServiceApi {
-  $pb.RpcClient _client;
-  ProductServiceApi(this._client);
-
-  /// 查询商品列表
-  $async.Future<$0.ProductList> queryProducts($pb.ClientContext? ctx, $0.ProductQuery request) =>
-    _client.invoke<$0.ProductList>(ctx, 'ProductService', 'QueryProducts', request, $0.ProductList())
-  ;
-  /// 获取单个商品
-  $async.Future<$0.Product> getProduct($pb.ClientContext? ctx, GetProductRequest request) =>
-    _client.invoke<$0.Product>(ctx, 'ProductService', 'GetProduct', request, $0.Product())
-  ;
 }
 
 
