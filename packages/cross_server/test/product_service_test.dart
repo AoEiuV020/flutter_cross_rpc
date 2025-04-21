@@ -1,7 +1,8 @@
 import 'package:cross_proto/cross_proto.dart';
-import 'package:cross_server/src/product_service_impl.dart';
 import 'package:grpc/grpc.dart';
 import 'package:test/test.dart';
+
+import 'package:cross_server/src/product_service_impl.dart';
 
 class TestServerContext implements ServiceCall {
   @override

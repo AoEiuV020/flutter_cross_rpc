@@ -39,27 +39,32 @@ class Product extends $pb.GeneratedMessage {
     return $result;
   }
   Product._() : super();
-  factory Product.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory Product.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory Product.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory Product.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Product', package: const $pb.PackageName(_omitMessageNames ? '' : 'shop'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Product',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'shop'),
+      createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..aOS(2, _omitFieldNames ? '' : 'name')
     ..a<$core.double>(3, _omitFieldNames ? '' : 'price', $pb.PbFieldType.OD)
     ..a<$core.int>(4, _omitFieldNames ? '' : 'stock', $pb.PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   Product clone() => Product()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  Product copyWith(void Function(Product) updates) => super.copyWith((message) => updates(message as Product)) as Product;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  Product copyWith(void Function(Product) updates) =>
+      super.copyWith((message) => updates(message as Product)) as Product;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -68,13 +73,17 @@ class Product extends $pb.GeneratedMessage {
   Product createEmptyInstance() => create();
   static $pb.PbList<Product> createRepeated() => $pb.PbList<Product>();
   @$core.pragma('dart2js:noInline')
-  static Product getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Product>(create);
+  static Product getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Product>(create);
   static Product? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set id($core.int v) { $_setSignedInt32(0, v); }
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
@@ -83,7 +92,10 @@ class Product extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get name => $_getSZ(1);
   @$pb.TagNumber(2)
-  set name($core.String v) { $_setString(1, v); }
+  set name($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasName() => $_has(1);
   @$pb.TagNumber(2)
@@ -92,7 +104,10 @@ class Product extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.double get price => $_getN(2);
   @$pb.TagNumber(3)
-  set price($core.double v) { $_setDouble(2, v); }
+  set price($core.double v) {
+    $_setDouble(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasPrice() => $_has(2);
   @$pb.TagNumber(3)
@@ -101,7 +116,10 @@ class Product extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $core.int get stock => $_getIZ(3);
   @$pb.TagNumber(4)
-  set stock($core.int v) { $_setSignedInt32(3, v); }
+  set stock($core.int v) {
+    $_setSignedInt32(3, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasStock() => $_has(3);
   @$pb.TagNumber(4)
@@ -128,41 +146,52 @@ class ProductQuery extends $pb.GeneratedMessage {
     return $result;
   }
   ProductQuery._() : super();
-  factory ProductQuery.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ProductQuery.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory ProductQuery.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ProductQuery.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProductQuery', package: const $pb.PackageName(_omitMessageNames ? '' : 'shop'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ProductQuery',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'shop'),
+      createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'keyword')
     ..a<$core.double>(2, _omitFieldNames ? '' : 'minPrice', $pb.PbFieldType.OD)
     ..a<$core.double>(3, _omitFieldNames ? '' : 'maxPrice', $pb.PbFieldType.OD)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   ProductQuery clone() => ProductQuery()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ProductQuery copyWith(void Function(ProductQuery) updates) => super.copyWith((message) => updates(message as ProductQuery)) as ProductQuery;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ProductQuery copyWith(void Function(ProductQuery) updates) =>
+      super.copyWith((message) => updates(message as ProductQuery))
+          as ProductQuery;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ProductQuery create() => ProductQuery._();
   ProductQuery createEmptyInstance() => create();
-  static $pb.PbList<ProductQuery> createRepeated() => $pb.PbList<ProductQuery>();
+  static $pb.PbList<ProductQuery> createRepeated() =>
+      $pb.PbList<ProductQuery>();
   @$core.pragma('dart2js:noInline')
-  static ProductQuery getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProductQuery>(create);
+  static ProductQuery getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ProductQuery>(create);
   static ProductQuery? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get keyword => $_getSZ(0);
   @$pb.TagNumber(1)
-  set keyword($core.String v) { $_setString(0, v); }
+  set keyword($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasKeyword() => $_has(0);
   @$pb.TagNumber(1)
@@ -171,7 +200,10 @@ class ProductQuery extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.double get minPrice => $_getN(1);
   @$pb.TagNumber(2)
-  set minPrice($core.double v) { $_setDouble(1, v); }
+  set minPrice($core.double v) {
+    $_setDouble(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasMinPrice() => $_has(1);
   @$pb.TagNumber(2)
@@ -180,7 +212,10 @@ class ProductQuery extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.double get maxPrice => $_getN(2);
   @$pb.TagNumber(3)
-  set maxPrice($core.double v) { $_setDouble(2, v); }
+  set maxPrice($core.double v) {
+    $_setDouble(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasMaxPrice() => $_has(2);
   @$pb.TagNumber(3)
@@ -203,25 +238,32 @@ class ProductList extends $pb.GeneratedMessage {
     return $result;
   }
   ProductList._() : super();
-  factory ProductList.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ProductList.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory ProductList.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ProductList.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProductList', package: const $pb.PackageName(_omitMessageNames ? '' : 'shop'), createEmptyInstance: create)
-    ..pc<Product>(1, _omitFieldNames ? '' : 'items', $pb.PbFieldType.PM, subBuilder: Product.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ProductList',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'shop'),
+      createEmptyInstance: create)
+    ..pc<Product>(1, _omitFieldNames ? '' : 'items', $pb.PbFieldType.PM,
+        subBuilder: Product.create)
     ..a<$core.int>(2, _omitFieldNames ? '' : 'total', $pb.PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   ProductList clone() => ProductList()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ProductList copyWith(void Function(ProductList) updates) => super.copyWith((message) => updates(message as ProductList)) as ProductList;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ProductList copyWith(void Function(ProductList) updates) =>
+      super.copyWith((message) => updates(message as ProductList))
+          as ProductList;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -230,7 +272,8 @@ class ProductList extends $pb.GeneratedMessage {
   ProductList createEmptyInstance() => create();
   static $pb.PbList<ProductList> createRepeated() => $pb.PbList<ProductList>();
   @$core.pragma('dart2js:noInline')
-  static ProductList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProductList>(create);
+  static ProductList getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ProductList>(create);
   static ProductList? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -239,13 +282,16 @@ class ProductList extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.int get total => $_getIZ(1);
   @$pb.TagNumber(2)
-  set total($core.int v) { $_setSignedInt32(1, v); }
+  set total($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasTotal() => $_has(1);
   @$pb.TagNumber(2)
   void clearTotal() => $_clearField(2);
 }
 
-
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames =
+    $core.bool.fromEnvironment('protobuf.omit_message_names');

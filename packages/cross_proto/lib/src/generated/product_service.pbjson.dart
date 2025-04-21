@@ -22,6 +22,5 @@ const GetProductRequest$json = {
 };
 
 /// Descriptor for `GetProductRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List getProductRequestDescriptor = $convert.base64Decode(
-    'ChFHZXRQcm9kdWN0UmVxdWVzdBIOCgJpZBgBIAEoBVICaWQ=');
-
+final $typed_data.Uint8List getProductRequestDescriptor =
+    $convert.base64Decode('ChFHZXRQcm9kdWN0UmVxdWVzdBIOCgJpZBgBIAEoBVICaWQ=');

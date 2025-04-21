@@ -1,5 +1,6 @@
-import 'package:cross_proto/cross_proto.dart';
 import 'package:test/test.dart';
+
+import 'package:cross_proto/cross_proto.dart';
 
 void main() {
   group('Product Tests', () {

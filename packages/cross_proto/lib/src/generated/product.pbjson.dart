@@ -48,7 +48,14 @@ final $typed_data.Uint8List productQueryDescriptor = $convert.base64Decode(
 const ProductList$json = {
   '1': 'ProductList',
   '2': [
-    {'1': 'items', '3': 1, '4': 3, '5': 11, '6': '.shop.Product', '10': 'items'},
+    {
+      '1': 'items',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.shop.Product',
+      '10': 'items'
+    },
     {'1': 'total', '3': 2, '4': 1, '5': 5, '10': 'total'},
   ],
 };
@@ -57,4 +64,3 @@ const ProductList$json = {
 final $typed_data.Uint8List productListDescriptor = $convert.base64Decode(
     'CgtQcm9kdWN0TGlzdBIjCgVpdGVtcxgBIAMoCzINLnNob3AuUHJvZHVjdFIFaXRlbXMSFAoFdG'
     '90YWwYAiABKAVSBXRvdGFs');
-

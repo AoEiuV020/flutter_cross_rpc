@@ -1,5 +1,5 @@
-import 'package:grpc/grpc.dart';
 import 'package:cross_proto/cross_proto.dart';
+import 'package:grpc/grpc.dart';
 
 void main() async {
   // 创建 gRPC channel

@@ -3,7 +3,10 @@ import 'package:grpc/grpc.dart';
 
 class ProductServiceImpl extends ProductServiceBase {
   @override
-  Future<Product> getProduct(ServiceCall call, GetProductRequest request) async {
+  Future<Product> getProduct(
+    ServiceCall call,
+    GetProductRequest request,
+  ) async {
     print('处理 getProduct 请求: ID=${request.id}');
 
     // 模拟数据库中的商品
@@ -22,7 +25,10 @@ class ProductServiceImpl extends ProductServiceBase {
   }
 
   @override
-  Future<ProductList> queryProducts(ServiceCall call, ProductQuery request) async {
+  Future<ProductList> queryProducts(
+    ServiceCall call,
+    ProductQuery request,
+  ) async {
     print('处理 queryProducts 请求:');
     print('- 关键词: ${request.keyword}');
     print('- 价格范围: ${request.minPrice} - ${request.maxPrice}');
@@ -35,15 +41,16 @@ class ProductServiceImpl extends ProductServiceBase {
       Product(id: 4, name: 'AirPods', price: 199.99, stock: 300),
     ];
 
-    var filtered = allProducts.where((p) {
-      if (request.keyword.isNotEmpty &&
-          !p.name.toLowerCase().contains(request.keyword.toLowerCase())) {
-        return false;
-      }
-      if (request.minPrice > 0 && p.price < request.minPrice) return false;
-      if (request.maxPrice > 0 && p.price > request.maxPrice) return false;
-      return true;
-    }).toList();
+    var filtered =
+        allProducts.where((p) {
+          if (request.keyword.isNotEmpty &&
+              !p.name.toLowerCase().contains(request.keyword.toLowerCase())) {
+            return false;
+          }
+          if (request.minPrice > 0 && p.price < request.minPrice) return false;
+          if (request.maxPrice > 0 && p.price > request.maxPrice) return false;
+          return true;
+        }).toList();
 
     print('查询成功: 返回 ${filtered.length} 个商品');
     return ProductList(items: filtered, total: filtered.length);

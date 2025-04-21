@@ -22,26 +22,26 @@ export 'product_service.pb.dart';
 
 @$pb.GrpcServiceName('shop.ProductService')
 class ProductServiceClient extends $grpc.Client {
-  static final _$queryProducts = $grpc.ClientMethod<$0.ProductQuery, $0.ProductList>(
-      '/shop.ProductService/QueryProducts',
-      ($0.ProductQuery value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.ProductList.fromBuffer(value));
-  static final _$getProduct = $grpc.ClientMethod<$1.GetProductRequest, $0.Product>(
-      '/shop.ProductService/GetProduct',
-      ($1.GetProductRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.Product.fromBuffer(value));
+  static final _$queryProducts =
+      $grpc.ClientMethod<$0.ProductQuery, $0.ProductList>(
+          '/shop.ProductService/QueryProducts',
+          ($0.ProductQuery value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $0.ProductList.fromBuffer(value));
+  static final _$getProduct =
+      $grpc.ClientMethod<$1.GetProductRequest, $0.Product>(
+          '/shop.ProductService/GetProduct',
+          ($1.GetProductRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $0.Product.fromBuffer(value));
 
-  ProductServiceClient($grpc.ClientChannel channel,
-      {$grpc.CallOptions? options,
-      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
-      : super(channel, options: options,
-        interceptors: interceptors);
+  ProductServiceClient(super.channel, {super.options, super.interceptors});
 
-  $grpc.ResponseFuture<$0.ProductList> queryProducts($0.ProductQuery request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.ProductList> queryProducts($0.ProductQuery request,
+      {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$queryProducts, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.Product> getProduct($1.GetProductRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.Product> getProduct($1.GetProductRequest request,
+      {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getProduct, request, options: options);
   }
 }
@@ -67,14 +67,18 @@ abstract class ProductServiceBase extends $grpc.Service {
         ($0.Product value) => value.writeToBuffer()));
   }
 
-  $async.Future<$0.ProductList> queryProducts_Pre($grpc.ServiceCall $call, $async.Future<$0.ProductQuery> $request) async {
+  $async.Future<$0.ProductList> queryProducts_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.ProductQuery> $request) async {
     return queryProducts($call, await $request);
   }
 
-  $async.Future<$0.Product> getProduct_Pre($grpc.ServiceCall $call, $async.Future<$1.GetProductRequest> $request) async {
+  $async.Future<$0.Product> getProduct_Pre($grpc.ServiceCall $call,
+      $async.Future<$1.GetProductRequest> $request) async {
     return getProduct($call, await $request);
   }
 
-  $async.Future<$0.ProductList> queryProducts($grpc.ServiceCall call, $0.ProductQuery request);
-  $async.Future<$0.Product> getProduct($grpc.ServiceCall call, $1.GetProductRequest request);
+  $async.Future<$0.ProductList> queryProducts(
+      $grpc.ServiceCall call, $0.ProductQuery request);
+  $async.Future<$0.Product> getProduct(
+      $grpc.ServiceCall call, $1.GetProductRequest request);
 }
