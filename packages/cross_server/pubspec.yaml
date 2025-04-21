@@ -9,7 +9,7 @@ environment:
 dependencies:
   cross_proto:
     path: ../cross_proto
-  protobuf: any
+  grpc: any
 
 dev_dependencies:
   lints: ^5.0.0
