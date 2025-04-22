@@ -1,12 +1,10 @@
 import 'package:cross_proto/cross_proto.dart';
+import 'package:cross_wrapper/cross_wrapper.dart';
 import 'package:grpc/grpc.dart';
 
-class ProductServiceImpl extends ProductServiceBase {
+class ProductServiceImpl implements ProductService {
   @override
-  Future<Product> getProduct(
-    ServiceCall call,
-    GetProductRequest request,
-  ) async {
+  Future<Product> getProduct(GetProductRequest request) async {
     print('处理 getProduct 请求: ID=${request.id}');
 
     // 模拟数据库中的商品
@@ -25,10 +23,7 @@ class ProductServiceImpl extends ProductServiceBase {
   }
 
   @override
-  Future<ProductList> queryProducts(
-    ServiceCall call,
-    ProductQuery request,
-  ) async {
+  Future<ProductList> queryProducts(ProductQuery request) async {
     print('处理 queryProducts 请求:');
     print('- 关键词: ${request.keyword}');
     print('- 价格范围: ${request.minPrice} - ${request.maxPrice}');
@@ -54,5 +49,21 @@ class ProductServiceImpl extends ProductServiceBase {
 
     print('查询成功: 返回 ${filtered.length} 个商品');
     return ProductList(items: filtered, total: filtered.length);
+  }
+}
+
+class ProductServiceAdapter extends ProductServiceBase {
+  final ProductServiceImpl _adapter = ProductServiceImpl();
+
+  ProductServiceAdapter();
+
+  @override
+  Future<ProductList> queryProducts(ServiceCall call, ProductQuery request) {
+    return _adapter.queryProducts(request);
+  }
+
+  @override
+  Future<Product> getProduct(ServiceCall call, GetProductRequest request) {
+    return _adapter.getProduct(request);
   }
 }

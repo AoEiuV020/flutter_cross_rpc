@@ -24,7 +24,7 @@ FutureOr<GrpcError?> loggingInterceptor(
 
 void main() async {
   final server = Server.create(
-    services: [ProductServiceImpl()],
+    services: [ProductServiceAdapter()],
     interceptors: [loggingInterceptor],
   );
 

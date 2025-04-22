@@ -1,4 +1,5 @@
 import 'package:cross_proto/cross_proto.dart';
+import 'package:cross_wrapper/cross_wrapper.dart';
 import 'package:grpc/grpc.dart';
 
 void main() async {
@@ -16,7 +17,9 @@ void main() async {
   );
 
   // 创建 stub
-  final stub = ProductServiceClient(channel);
+  final ProductService stub = ProductServiceWrapper(
+    ProductServiceClient(channel),
+  );
 
   try {
     print('开始测试 gRPC 客户端...\n');

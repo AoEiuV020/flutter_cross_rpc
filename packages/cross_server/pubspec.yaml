@@ -9,6 +9,8 @@ environment:
 dependencies:
   cross_proto:
     path: ../cross_proto
+  cross_wrapper:
+    path: ../cross_wrapper
   grpc: any
 
 dev_dependencies:
