@@ -22,4 +22,9 @@ class ProductServiceWrapper implements ProductService {
   Future<Product> getProduct(GetProductRequest request) async {
     return await target.getProduct(request);
   }
+
+  @override
+  String toString() {
+    return target.toString();
+  }
 }

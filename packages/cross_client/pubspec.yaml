@@ -11,6 +11,8 @@ dependencies:
     path: ../cross_proto
   cross_wrapper:
     path: ../cross_wrapper
+  cross_server:
+    path: ../cross_server
   grpc: any
 
 dev_dependencies:

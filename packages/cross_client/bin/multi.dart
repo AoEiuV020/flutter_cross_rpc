@@ -1,4 +1,5 @@
 import 'package:cross_proto/cross_proto.dart';
+import 'package:cross_server/cross_server.dart';
 import 'package:cross_wrapper/cross_wrapper.dart';
 import 'package:grpc/grpc.dart';
 
@@ -17,14 +18,16 @@ void main() async {
       idleTimeout: Duration(minutes: 1),
     ),
   );
-
-  // 创建 stub
-  final ProductService stub = ProductServiceWrapper(
-    ProductServiceClient(channel),
-  );
+  final List<ProductService> list =
+      [
+        ProductServiceImpl(),
+        ProductServiceClient(channel),
+      ].map((e) => ProductServiceWrapper(e)).toList();
 
   try {
-    await test(stub);
+    for (var stub in list) {
+      await test(stub);
+    }
   } catch (e) {
     print('发生错误: $e');
   } finally {
