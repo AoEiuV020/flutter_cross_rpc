@@ -33,6 +33,7 @@ dart pub add grpc_over_json_rpc
 
 ```dart
 // 创建JSON-RPC服务器
+// YourServiceImpl是grpc生成的Base类的实现，
 final server = JsonServer.create(services: [YourServiceImpl()]);
 
 // 创建任意支持双向数据流的channel
@@ -45,7 +46,7 @@ server.serve(channel.cast<String>());
 
 使用 `JsonClientMixin` 创建客户端：
 
-> 继承grpc生成的Client类，并实现 `JsonClientMixin`
+> 继承grpc生成的Client类，并实现 `JsonClientMixin`  
 > 注意：如果有多个服务客户端，应该共用同一个 `JsonRpcClient` 实例
 
 ```dart
