@@ -1,5 +1,5 @@
 import 'package:cross_proto/cross_proto.dart';
-import 'package:grpc/grpc.dart';
+import 'package:grpc/grpc.dart' show GrpcError;
 
 class ProductServiceImpl implements ProductService {
   // 模拟数据库中的商品列表
