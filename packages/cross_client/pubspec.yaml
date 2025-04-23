@@ -16,7 +16,7 @@ dependencies:
   cross_server:
     path: ../cross_server
   grpc: any
-  stream_channel: ^2.1.4
+  stream_channel: any
 
 dev_dependencies:
   lints: ^5.0.0
