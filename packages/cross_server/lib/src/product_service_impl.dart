@@ -22,7 +22,8 @@ class ProductServiceImpl implements ProductService {
 
     final product = _products[request.id];
     if (product == null) {
-      throw GrpcError.notFound('商品不存在: ID=${request.id}');
+      // details没用，client有反序列化但是server没有序列化，
+      throw GrpcError.notFound('商品不存在: ID=${request.id}', [request]);
     }
 
     print('返回商品: ${product.name}');
