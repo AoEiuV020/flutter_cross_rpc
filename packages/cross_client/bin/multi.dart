@@ -1,4 +1,3 @@
-import 'package:cross_proto/cross_proto.dart';
 import 'package:cross_server/cross_server.dart';
 import 'package:cross_wrapper/cross_wrapper.dart';
 
@@ -9,10 +8,7 @@ void main() async {
   // 创建 gRPC channel
   final channel = createChannel();
   final List<ProductService> list =
-      [
-        ProductServiceImpl(),
-        ProductServiceClient(channel),
-      ].map((e) => ProductServiceWrapper(e)).toList();
+      [ProductServiceImpl(), ProductServiceGrpcClient(channel)].toList();
 
   try {
     for (var stub in list) {

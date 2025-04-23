@@ -5,7 +5,7 @@ import 'test.dart';
 
 void main() async {
   // 创建 stub
-  final ProductService stub = ProductServiceWrapper(ProductServiceImpl());
+  final ProductService stub = ProductServiceImpl();
 
   try {
     await test(stub);

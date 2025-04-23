@@ -15,31 +15,7 @@ abstract class ProductService {
   Future<ProductList> getAllProducts(Empty request);
 }
 
-class ProductServiceWrapper implements ProductService {
-  final dynamic target;
-
-  ProductServiceWrapper(this.target);
-  @override
-  Future<ProductList> queryProducts(ProductQuery query) async {
-    return await target.queryProducts(query);
-  }
-
-  @override
-  Future<Product> getProduct(GetProductRequest request) async {
-    return await target.getProduct(request);
-  }
-
-  @override
-  Future<ProductList> getAllProducts(Empty request) async {
-    return await target.getAllProducts(request);
-  }
-
-  @override
-  String toString() {
-    return target.toString();
-  }
-}
-
+/// 将 ProductService 适配为 gRPC 服务
 class ProductServiceAdapter extends ProductServiceBase {
   final ProductService _adapter;
 
@@ -61,8 +37,10 @@ class ProductServiceAdapter extends ProductServiceBase {
   }
 }
 
+/// 将 json rpc client 适配为 ProductService
 class ProductServiceJsonClient extends ProductServiceClient
-    with JsonClientMixin {
+    with JsonClientMixin
+    implements ProductService {
   @override
   final JsonRpcClient jsonRpcClient;
 
@@ -78,4 +56,10 @@ class ProductServiceJsonClient extends ProductServiceClient
       super(JsonClientMixin.channel) {
     jsonRpcClient.listen();
   }
+}
+
+/// 将 grpc client 适配为 ProductService
+class ProductServiceGrpcClient extends ProductServiceClient
+    implements ProductService {
+  ProductServiceGrpcClient(super.channel);
 }

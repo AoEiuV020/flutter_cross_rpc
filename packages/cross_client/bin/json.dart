@@ -11,9 +11,7 @@ void main() async {
   var jsonRpcClient = JsonRpcClient(socket.cast<String>());
 
   print('创建 ProductService 客户端...');
-  final ProductService stub = ProductServiceWrapper(
-    ProductServiceJsonClient(jsonRpcClient),
-  );
+  final ProductService stub = ProductServiceJsonClient(jsonRpcClient);
 
   try {
     print('开始执行测试...');
