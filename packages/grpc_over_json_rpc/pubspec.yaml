@@ -7,7 +7,7 @@ environment:
   sdk: ^3.7.2
 
 dependencies:
-  async: ^2.13.0
+  async: any
   grpc: ^4.0.4
   json_rpc_2: ^3.0.3
   stream_channel: ^2.1.4
