@@ -9,6 +9,7 @@ class ConsoleUI {
     print('4. 添加http服务');
     print('9. 查看已添加的服务');
     print('0. 开始测试');
+    print('c. 断开服务');
     print('q. 退出程序');
   }
 

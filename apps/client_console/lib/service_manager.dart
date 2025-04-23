@@ -1,12 +1,15 @@
+import 'dart:async';
+
 import 'package:cross_proto/cross_proto.dart';
 import 'package:cross_server/cross_server.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc_over_json_rpc/grpc_over_json_rpc.dart';
+import 'package:http/http.dart' as http;
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ServiceManager {
   final Map<String, ProductService> services = {};
-  final Map<String, Future Function()> _cleanupCallbacks = {};
+  final Map<String, FutureOr Function()> _cleanupCallbacks = {};
 
   // 默认服务器地址
   static const defaultGrpcServer = 'localhost:8888';
@@ -50,12 +53,32 @@ class ServiceManager {
 
   Future<void> addHttpService(String server) async {
     final uri = Uri.parse(server);
-    final jsonRpcClient = JsonRpcClient(HttpJsonRpcStreamChannel(uri));
+    final httpClient = http.Client();
+    final jsonRpcClient = JsonRpcClient(
+      JsonRpcStreamChannel(
+        (message) => httpClient
+            .post(
+              uri,
+              headers: {'Content-Type': 'application/json'},
+              body: message,
+            )
+            .then((response) {
+              if (response.statusCode == 200) {
+                return response.body;
+              } else {
+                throw Exception('HTTP请求失败: ${response.statusCode}');
+              }
+            }),
+      ),
+    );
 
     final name = 'http-${services.length + 1}';
     final client = ProductServiceJsonClient(jsonRpcClient);
     services[name] = client;
-    _cleanupCallbacks[name] = jsonRpcClient.close;
+    _cleanupCallbacks[name] = () async {
+      httpClient.close();
+      await jsonRpcClient.close();
+    };
     print('已添加HTTP服务: $name ($server)');
   }
 

@@ -9,7 +9,6 @@ environment:
 dependencies:
   async: any
   grpc: ^4.0.4
-  http: ^1.2.0
   json_rpc_2: ^3.0.3
   stream_channel: ^2.1.4
 

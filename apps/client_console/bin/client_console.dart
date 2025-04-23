@@ -44,6 +44,9 @@ void main() async {
               print('测试失败: $e');
             }
           }
+        case 'c':
+          print('正在清理连接...');
+          await serviceManager.cleanup();
         case 'q':
           print('正在清理连接...');
           await serviceManager.cleanup();
