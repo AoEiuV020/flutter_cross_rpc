@@ -2,7 +2,6 @@ import 'package:cross_proto/cross_proto.dart';
 import 'package:cross_server/cross_server.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc_over_json_rpc/grpc_over_json_rpc.dart';
-import 'package:stream_channel/stream_channel.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ServiceManager {
@@ -51,8 +50,6 @@ class ServiceManager {
 
   Future<void> addHttpService(String server) async {
     final uri = Uri.parse(server);
-    StreamChannel<String> channel;
-    // TODO: 创建channel,
     final jsonRpcClient = JsonRpcClient(HttpJsonRpcStreamChannel(uri));
 
     final name = 'http-${services.length + 1}';

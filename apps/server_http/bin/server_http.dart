@@ -1,11 +1,9 @@
-import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:cross_proto/cross_proto.dart';
 import 'package:cross_server/cross_server.dart';
 import 'package:grpc_over_json_rpc/grpc_over_json_rpc.dart';
-import 'package:stream_channel/stream_channel.dart';
 
 void main(List<String> arguments) async {
   var address = 'localhost';
@@ -32,42 +30,14 @@ void main(List<String> arguments) async {
   await for (HttpRequest request in httpServer) {
     if (request.uri.path == '/jsonrpc' && request.method == 'POST') {
       try {
-        // 创建一个控制器来管理请求和响应
-        final requestController = StreamController<String>();
-        final responseController = StreamController<String>();
-
-        // 创建 StreamChannel
-        final channel = StreamChannel<String>(
-          requestController.stream,
-          responseController.sink,
-        );
-        JsonRpcServer jsonRpcServer = JsonRpcServer(channel);
-
-        // 处理响应数据
-        responseController.stream.listen(
-          (data) {
-            // 设置响应头
-            request.response.headers.contentType = ContentType.json;
-            request.response.write(data);
-            request.response.close();
-            jsonRpcServer.close();
-            requestController.close();
-          },
-          onDone: () {
-            print('响应已完成');
-          },
-          onError: (error) {
-            print('处理响应时发生错误: $error');
-            request.response.statusCode = HttpStatus.internalServerError;
-            request.response.close();
-          },
-        );
-
-        await server.serveServer(jsonRpcServer);
-
         // 读取请求体并发送到 channel
         final content = await utf8.decodeStream(request);
-        requestController.add(content);
+        final data = await server.singleRequest(content);
+
+        // 设置响应头
+        request.response.headers.contentType = ContentType.json;
+        request.response.write(data);
+        request.response.close();
       } catch (e) {
         print('处理请求时发生错误: $e');
         request.response.statusCode = HttpStatus.internalServerError;

@@ -78,4 +78,36 @@ class JsonServer {
     // 这里不await，因为serve参考grpc是成功启动就返回，而jsonRpc里的listen是关闭后才返回，
     server.listen();
   }
+
+  Future<String> singleRequest(String content) {
+    Completer<String> completer = Completer<String>();
+    // 创建一个控制器来管理请求和响应
+    final requestController = StreamController<String>();
+    final responseController = StreamController<String>();
+
+    // 创建 StreamChannel
+    final channel = StreamChannel<String>(
+      requestController.stream,
+      responseController.sink,
+    );
+    JsonRpcServer jsonRpcServer = JsonRpcServer(channel);
+    serveServer(jsonRpcServer);
+
+    // 处理响应数据
+    responseController.stream.listen(
+      (data) {
+        completer.complete(data);
+        jsonRpcServer.close();
+        requestController.close();
+      },
+      onError: (error) {
+        completer.completeError(error);
+        jsonRpcServer.close();
+        requestController.close();
+      },
+    );
+
+    requestController.add(content);
+    return completer.future;
+  }
 }
