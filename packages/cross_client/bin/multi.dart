@@ -1,5 +1,5 @@
+import 'package:cross_proto/cross_proto.dart';
 import 'package:cross_server/cross_server.dart';
-import 'package:cross_wrapper/cross_wrapper.dart';
 
 import 'grpc.dart';
 import 'test.dart';

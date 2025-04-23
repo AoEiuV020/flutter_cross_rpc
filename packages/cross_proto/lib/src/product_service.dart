@@ -1,7 +1,8 @@
-import 'package:cross_proto/cross_proto.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc_over_json_rpc/grpc_over_json_rpc.dart';
 import 'package:stream_channel/stream_channel.dart';
+
+import '../cross_proto.dart';
 
 /// 商品服务的抽象接口定义
 abstract class ProductService {

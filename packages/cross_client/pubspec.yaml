@@ -9,8 +9,6 @@ environment:
 dependencies:
   cross_proto:
     path: ../cross_proto
-  cross_wrapper:
-    path: ../cross_wrapper
   grpc_over_json_rpc:
     path: ../grpc_over_json_rpc
   cross_server:

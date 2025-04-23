@@ -1,5 +1,4 @@
 import 'package:cross_proto/cross_proto.dart';
-import 'package:cross_wrapper/cross_wrapper.dart';
 
 Future<void> test(ProductService stub) async {
   print('开始测试 $stub ...\n');

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:cross_wrapper/cross_wrapper.dart';
+import 'package:cross_proto/cross_proto.dart';
 import 'package:grpc/grpc.dart';
 
 import 'package:cross_server/cross_server.dart';
