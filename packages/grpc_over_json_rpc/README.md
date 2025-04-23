@@ -13,6 +13,7 @@
 由于JSON-RPC协议的限制，本包只支持gRPC的部分功能：
 
 - ❌ 不支持流式调用（streaming），因为JSON-RPC不支持流
+- ❌ 服务端无法使用http相关的参数ServiceCall
 - ✅ 仅支持一元调用（unary calls）
 - ✅ 方法的参数和返回值必须是Protocol Buffer消息（message）
 - ✅ 支持标准gRPC错误码
