@@ -1,14 +1,16 @@
 name: cross_json_rpc
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+publish_to: none
 
 environment:
   sdk: ^3.7.2
 
-# Add regular dependencies here.
 dependencies:
-  # path: ^1.8.0
+  cross_wrapper:
+    path: ../cross_wrapper
+  json_rpc_2: ^3.0.3
+  stream_channel: ^2.1.4
 
 dev_dependencies:
   lints: ^5.0.0
