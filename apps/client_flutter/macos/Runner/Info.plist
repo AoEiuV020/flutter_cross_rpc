@@ -28,5 +28,22 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	
+	<!-- 添加网络权限配置 -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	
+	<!-- 添加出站网络连接权限 -->
+	<key>com.apple.security.network.client</key>
+	<true/>
+	
+	<!-- 如果需要本地网络访问（比如连接本地服务器），添加以下权限 -->
+	<key>com.apple.security.network.server</key>
+	<true/>
 </dict>
 </plist>
