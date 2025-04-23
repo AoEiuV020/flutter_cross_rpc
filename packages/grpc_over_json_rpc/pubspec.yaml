@@ -1,7 +1,6 @@
-name: cross_json_rpc
-description: A starting point for Dart libraries or applications.
+name: grpc_over_json_rpc
+description: A Dart library that bridges gRPC/Protobuf generated services with JSON-RPC, allowing you to reuse Protobuf service definitions in JSON-RPC implementations.
 version: 1.0.0
-publish_to: none
 
 environment:
   sdk: ^3.7.2

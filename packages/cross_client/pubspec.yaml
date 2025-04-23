@@ -11,8 +11,8 @@ dependencies:
     path: ../cross_proto
   cross_wrapper:
     path: ../cross_wrapper
-  cross_json_rpc:
-    path: ../cross_json_rpc
+  grpc_over_json_rpc:
+    path: ../grpc_over_json_rpc
   cross_server:
     path: ../cross_server
   grpc: any

@@ -1,5 +1,5 @@
-import 'package:cross_json_rpc/cross_json_rpc.dart';
 import 'package:cross_wrapper/cross_wrapper.dart';
+import 'package:grpc_over_json_rpc/grpc_over_json_rpc.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'test.dart';

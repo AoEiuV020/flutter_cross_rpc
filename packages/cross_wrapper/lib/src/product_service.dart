@@ -1,6 +1,6 @@
-import 'package:cross_json_rpc/cross_json_rpc.dart';
 import 'package:cross_proto/cross_proto.dart';
 import 'package:grpc/grpc.dart';
+import 'package:grpc_over_json_rpc/grpc_over_json_rpc.dart';
 import 'package:stream_channel/stream_channel.dart';
 
 /// 商品服务的抽象接口定义
