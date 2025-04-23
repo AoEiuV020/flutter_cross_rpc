@@ -68,7 +68,7 @@ class JsonServer {
         throw RpcException(
           SERVER_ERROR,
           e.message ?? 'Unknown gRPC error',
-          data: {'grpcError': GrpcErrorUtils.serialize(e)},
+          data: {GrpcErrorUtils.grpcErrorKey: GrpcErrorUtils.serialize(e)},
         );
       }
     });

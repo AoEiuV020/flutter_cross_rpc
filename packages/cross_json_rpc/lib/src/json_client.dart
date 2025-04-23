@@ -30,8 +30,10 @@ mixin JsonClientMixin on Client {
       ]);
     } on RpcException catch (e) {
       final data = e.data;
-      if (data is Map && data['grpcError'] != null) {
-        throw GrpcErrorUtils.deserialize(data['grpcError']);
+      if (data is Map) {
+        if (data.containsKey(GrpcErrorUtils.grpcErrorKey)) {
+          throw GrpcErrorUtils.deserialize(data[GrpcErrorUtils.grpcErrorKey]);
+        }
       }
       rethrow;
     }

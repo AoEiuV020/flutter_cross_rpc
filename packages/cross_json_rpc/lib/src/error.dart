@@ -1,6 +1,7 @@
 import 'package:grpc/grpc.dart';
 
 class GrpcErrorUtils {
+  static const String grpcErrorKey = 'grpcError';
   static Map<String, dynamic> serialize(GrpcError error) {
     return {
       'code': error.code.toString(),
