@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cross_wrapper/cross_wrapper.dart';
 import 'package:grpc/grpc.dart';
 
 import 'package:cross_server/cross_server.dart';
@@ -24,7 +25,7 @@ FutureOr<GrpcError?> loggingInterceptor(
 
 void main() async {
   final server = Server.create(
-    services: [ProductServiceAdapter()],
+    services: [ProductServiceAdapter(ProductServiceImpl())],
     interceptors: [loggingInterceptor],
   );
 

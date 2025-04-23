@@ -2,13 +2,16 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:cross_json_rpc/cross_json_rpc.dart';
+import 'package:cross_wrapper/cross_wrapper.dart';
 import 'package:stream_channel/stream_channel.dart';
 
 import 'package:cross_server/cross_server.dart';
 
 void main() async {
   print('初始化 JSON-RPC 服务器...');
-  final server = JsonServer.create(services: [ProductServiceAdapter()]);
+  final server = JsonServer.create(
+    services: [ProductServiceAdapter(ProductServiceImpl())],
+  );
   print('JSON-RPC 服务器初始化完成，注册了 ProductServiceAdapter');
 
   // 创建 WebSocket 服务器

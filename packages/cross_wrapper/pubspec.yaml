@@ -9,7 +9,10 @@ environment:
 dependencies:
   cross_proto:
     path: ../cross_proto
+  cross_json_rpc:
+    path: ../cross_json_rpc
   grpc: any
+  stream_channel: ^2.1.4
 
 dev_dependencies:
   lints: ^5.0.0

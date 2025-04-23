@@ -61,24 +61,3 @@ class ProductServiceImpl implements ProductService {
     return ProductList(items: allProducts, total: allProducts.length);
   }
 }
-
-class ProductServiceAdapter extends ProductServiceBase {
-  final ProductServiceImpl _adapter = ProductServiceImpl();
-
-  ProductServiceAdapter();
-
-  @override
-  Future<ProductList> queryProducts(ServiceCall call, ProductQuery request) {
-    return _adapter.queryProducts(request);
-  }
-
-  @override
-  Future<Product> getProduct(ServiceCall call, GetProductRequest request) {
-    return _adapter.getProduct(request);
-  }
-
-  @override
-  Future<ProductList> getAllProducts(ServiceCall call, Empty request) {
-    return _adapter.getAllProducts(request);
-  }
-}

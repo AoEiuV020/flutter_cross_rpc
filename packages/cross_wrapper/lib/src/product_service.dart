@@ -1,4 +1,7 @@
+import 'package:cross_json_rpc/cross_json_rpc.dart';
 import 'package:cross_proto/cross_proto.dart';
+import 'package:grpc/grpc.dart';
+import 'package:stream_channel/stream_channel.dart';
 
 /// 商品服务的抽象接口定义
 abstract class ProductService {
@@ -34,5 +37,45 @@ class ProductServiceWrapper implements ProductService {
   @override
   String toString() {
     return target.toString();
+  }
+}
+
+class ProductServiceAdapter extends ProductServiceBase {
+  final ProductService _adapter;
+
+  ProductServiceAdapter(this._adapter);
+
+  @override
+  Future<ProductList> queryProducts(ServiceCall call, ProductQuery request) {
+    return _adapter.queryProducts(request);
+  }
+
+  @override
+  Future<Product> getProduct(ServiceCall call, GetProductRequest request) {
+    return _adapter.getProduct(request);
+  }
+
+  @override
+  Future<ProductList> getAllProducts(ServiceCall call, Empty request) {
+    return _adapter.getAllProducts(request);
+  }
+}
+
+class ProductServiceJsonClient extends ProductServiceClient
+    with JsonClientMixin {
+  @override
+  final JsonRpcService jsonRpcService;
+
+  /// 使用已存在的 JsonRpcService 创建客户端
+  ProductServiceJsonClient(this.jsonRpcService)
+    : super(JsonClientMixin.channel) {
+    jsonRpcService.listen();
+  }
+
+  /// 使用 StreamChannel 创建客户端
+  ProductServiceJsonClient.create(StreamChannel<String> channel)
+    : jsonRpcService = JsonRpcService.fromSingleStream(channel),
+      super(JsonClientMixin.channel) {
+    jsonRpcService.listen();
   }
 }

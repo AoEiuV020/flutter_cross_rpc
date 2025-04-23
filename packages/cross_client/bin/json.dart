@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:cross_wrapper/cross_wrapper.dart';
 import 'package:stream_channel/stream_channel.dart';
 
-import 'package:cross_client/cross_client.dart';
 import 'test.dart';
 
 void main() async {
