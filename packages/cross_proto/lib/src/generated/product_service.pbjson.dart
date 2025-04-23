@@ -24,3 +24,12 @@ const GetProductRequest$json = {
 /// Descriptor for `GetProductRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getProductRequestDescriptor =
     $convert.base64Decode('ChFHZXRQcm9kdWN0UmVxdWVzdBIOCgJpZBgBIAEoBVICaWQ=');
+
+@$core.Deprecated('Use emptyDescriptor instead')
+const Empty$json = {
+  '1': 'Empty',
+};
+
+/// Descriptor for `Empty`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List emptyDescriptor =
+    $convert.base64Decode('CgVFbXB0eQ==');

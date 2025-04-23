@@ -32,6 +32,10 @@ class ProductServiceClient extends $grpc.Client {
           '/shop.ProductService/GetProduct',
           ($1.GetProductRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.Product.fromBuffer(value));
+  static final _$getAllProducts = $grpc.ClientMethod<$1.Empty, $0.ProductList>(
+      '/shop.ProductService/GetAllProducts',
+      ($1.Empty value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.ProductList.fromBuffer(value));
 
   ProductServiceClient(super.channel, {super.options, super.interceptors});
 
@@ -43,6 +47,11 @@ class ProductServiceClient extends $grpc.Client {
   $grpc.ResponseFuture<$0.Product> getProduct($1.GetProductRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getProduct, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.ProductList> getAllProducts($1.Empty request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getAllProducts, request, options: options);
   }
 }
 
@@ -65,6 +74,13 @@ abstract class ProductServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $1.GetProductRequest.fromBuffer(value),
         ($0.Product value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.Empty, $0.ProductList>(
+        'GetAllProducts',
+        getAllProducts_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $1.Empty.fromBuffer(value),
+        ($0.ProductList value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.ProductList> queryProducts_Pre(
@@ -77,8 +93,15 @@ abstract class ProductServiceBase extends $grpc.Service {
     return getProduct($call, await $request);
   }
 
+  $async.Future<$0.ProductList> getAllProducts_Pre(
+      $grpc.ServiceCall $call, $async.Future<$1.Empty> $request) async {
+    return getAllProducts($call, await $request);
+  }
+
   $async.Future<$0.ProductList> queryProducts(
       $grpc.ServiceCall call, $0.ProductQuery request);
   $async.Future<$0.Product> getProduct(
       $grpc.ServiceCall call, $1.GetProductRequest request);
+  $async.Future<$0.ProductList> getAllProducts(
+      $grpc.ServiceCall call, $1.Empty request);
 }

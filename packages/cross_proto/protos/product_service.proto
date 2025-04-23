@@ -10,9 +10,14 @@ service ProductService {
   rpc QueryProducts (ProductQuery) returns (ProductList);
   // 获取单个商品
   rpc GetProduct (GetProductRequest) returns (Product);
+  // 获取所有商品
+  rpc GetAllProducts (Empty) returns (ProductList);
 }
 
 // 获取单个商品的请求
 message GetProductRequest {
   int32 id = 1;
 }
+
+// 自定义一个空的请求/响应类型
+message Empty {}

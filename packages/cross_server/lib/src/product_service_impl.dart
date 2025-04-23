@@ -29,12 +29,8 @@ class ProductServiceImpl implements ProductService {
     print('- 价格范围: ${request.minPrice} - ${request.maxPrice}');
 
     // 模拟数据库查询
-    final allProducts = [
-      Product(id: 1, name: 'iPhone', price: 999.99, stock: 100),
-      Product(id: 2, name: 'MacBook', price: 1999.99, stock: 50),
-      Product(id: 3, name: 'iPad', price: 599.99, stock: 200),
-      Product(id: 4, name: 'AirPods', price: 199.99, stock: 300),
-    ];
+    final productList = await getAllProducts(Empty());
+    final allProducts = productList.items;
 
     var filtered =
         allProducts.where((p) {
@@ -49,6 +45,22 @@ class ProductServiceImpl implements ProductService {
 
     print('查询成功: 返回 ${filtered.length} 个商品');
     return ProductList(items: filtered, total: filtered.length);
+  }
+
+  @override
+  Future<ProductList> getAllProducts(Empty request) async {
+    print('处理 getAllProducts 请求:');
+
+    // 模拟数据库查询
+    final allProducts = [
+      Product(id: 1, name: 'iPhone', price: 999.99, stock: 100),
+      Product(id: 2, name: 'MacBook', price: 1999.99, stock: 50),
+      Product(id: 3, name: 'iPad', price: 599.99, stock: 200),
+      Product(id: 4, name: 'AirPods', price: 199.99, stock: 300),
+    ];
+
+    print('查询成功: 返回 ${allProducts.length} 个商品');
+    return ProductList(items: allProducts, total: allProducts.length);
   }
 }
 
@@ -65,5 +77,10 @@ class ProductServiceAdapter extends ProductServiceBase {
   @override
   Future<Product> getProduct(ServiceCall call, GetProductRequest request) {
     return _adapter.getProduct(request);
+  }
+
+  @override
+  Future<ProductList> getAllProducts(ServiceCall call, Empty request) {
+    return _adapter.getAllProducts(request);
   }
 }

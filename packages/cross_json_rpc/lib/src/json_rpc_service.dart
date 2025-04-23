@@ -86,6 +86,10 @@ class JsonRpcService {
     }
   }
 
+  void registerFallback(Function(Parameters parameters) callback) {
+    rpcServer.registerFallback(callback);
+  }
+
   Future sendRequest(String method, parameters) async {
     return await rpcClient.sendRequest(method, parameters);
   }

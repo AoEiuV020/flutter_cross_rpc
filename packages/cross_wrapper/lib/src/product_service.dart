@@ -7,6 +7,9 @@ abstract class ProductService {
 
   /// 获取单个商品
   Future<Product> getProduct(GetProductRequest request);
+
+  // 获取所有商品
+  Future<ProductList> getAllProducts(Empty request);
 }
 
 class ProductServiceWrapper implements ProductService {
@@ -21,6 +24,11 @@ class ProductServiceWrapper implements ProductService {
   @override
   Future<Product> getProduct(GetProductRequest request) async {
     return await target.getProduct(request);
+  }
+
+  @override
+  Future<ProductList> getAllProducts(Empty request) async {
+    return await target.getAllProducts(request);
   }
 
   @override

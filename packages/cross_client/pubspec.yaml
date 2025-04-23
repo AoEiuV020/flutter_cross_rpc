@@ -11,9 +11,12 @@ dependencies:
     path: ../cross_proto
   cross_wrapper:
     path: ../cross_wrapper
+  cross_json_rpc:
+    path: ../cross_json_rpc
   cross_server:
     path: ../cross_server
   grpc: any
+  stream_channel: ^2.1.4
 
 dev_dependencies:
   lints: ^5.0.0
