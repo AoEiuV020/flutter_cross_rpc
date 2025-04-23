@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:grpc/grpc.dart';
 
-
 /// 日志拦截器
 FutureOr<GrpcError?> loggingInterceptor(
   ServiceCall call,

@@ -1,9 +1,8 @@
-import 'package:server_grpc/server_grpc.dart';
-
 import 'package:cross_proto/cross_proto.dart';
+import 'package:cross_server/cross_server.dart';
 import 'package:grpc/grpc.dart';
 
-import 'package:cross_server/cross_server.dart';
+import 'package:server_grpc/server_grpc.dart';
 
 void main() async {
   final server = Server.create(

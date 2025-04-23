@@ -1,14 +1,18 @@
 name: client_console
 description: A sample command-line application.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+publish_to: none
 
 environment:
   sdk: ^3.7.2
 
-# Add regular dependencies here.
 dependencies:
-  # path: ^1.8.0
+  cross_proto: any
+  grpc_over_json_rpc: any
+  cross_server: any
+  grpc: any
+  stream_channel: any
+  web_socket_channel: any
 
 dev_dependencies:
   lints: ^5.0.0
