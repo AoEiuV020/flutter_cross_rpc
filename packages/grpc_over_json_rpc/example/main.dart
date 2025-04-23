@@ -20,13 +20,12 @@ void main() async {
       .transform(WebSocketTransformer())
       .map(IOWebSocketChannel.new);
 
-  connectedChannels.listen((WebSocketChannel socket) {
+  connectedChannels.listen((WebSocketChannel channel) {
     print('新客户端连接');
-    final jsonRpcServer = JsonRpcServer(socket.cast<String>());
-    server.serveServer(jsonRpcServer);
+    server.serve(channel.cast<String>());
 
     // 监听连接关闭事件, 测试用，客户端断开后关闭服务器，
-    socket.sink.done.then((_) {
+    channel.sink.done.then((_) {
       print('客户端断开连接');
       httpServer.close(force: true).then((_) {
         print('服务器已关闭');
@@ -40,9 +39,9 @@ void main() async {
 
 void client() async {
   print('开始连接 WebSocket 服务器...');
-  var socket = WebSocketChannel.connect(Uri.parse('ws://localhost:8889/ws'));
+  var channel = WebSocketChannel.connect(Uri.parse('ws://localhost:8889/ws'));
   print('WebSocket 连接成功建立');
-  var jsonRpcClient = JsonRpcClient(socket.cast<String>());
+  var jsonRpcClient = JsonRpcClient(channel.cast<String>());
   print('创建 ProductService 客户端...');
   final client = ProductServiceJsonClient(jsonRpcClient);
 

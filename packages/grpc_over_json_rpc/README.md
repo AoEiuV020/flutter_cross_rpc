@@ -1,39 +1,77 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# grpc_over_json_rpc
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
+一个Dart包，允许你通过JSON-RPC协议运行gRPC风格的服务调用。该包提供了一个桥接层，让你能够在任意支持双向数据流的channel上使用JSON-RPC实现类gRPC服务。
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
+## 特性
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+- 🔄 gRPC风格服务转JSON-RPC调用
+- 🌐 支持任意双向数据流channel（如WebSocket、TCP等）
+- 🛠 简单的服务器和客户端实现
 
-## Features
+## 兼容性限制
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+由于JSON-RPC协议的限制，本包只支持gRPC的部分功能：
 
-## Getting started
+- ❌ 不支持流式调用（streaming），因为JSON-RPC不支持流
+- ✅ 仅支持一元调用（unary calls）
+- ✅ 方法的参数和返回值必须是Protocol Buffer消息（message）
+- ✅ 支持标准gRPC错误码
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## 快速开始
 
-## Usage
+1. 在你的项目中添加依赖:
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
+```bash
+dart pub add grpc_over_json_rpc
 ```
 
-## Additional information
+## 使用方法
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+### 服务器端实现
+
+使用 `JsonServer` 创建服务器：
+
+```dart
+// 创建JSON-RPC服务器
+final server = JsonServer.create(services: [YourServiceImpl()]);
+
+// 创建任意支持双向数据流的channel
+// 这里以WebSocket为例
+WebSocketChannel channel;
+server.serve(channel.cast<String>());
+```
+
+### 客户端实现
+
+使用 `JsonClientMixin` 创建客户端：
+
+> 继承grpc生成的Client类，并实现 `JsonClientMixin`
+> 注意：如果有多个服务客户端，应该共用同一个 `JsonRpcClient` 实例
+
+```dart
+class YourServiceJsonClient extends YourServiceClient with JsonClientMixin {
+  @override
+  final JsonRpcClient jsonRpcClient;
+
+  YourServiceJsonClient(this.jsonRpcClient)
+      : super(JsonClientMixin.channel) {
+    jsonRpcClient.listen();
+  }
+}
+
+// 使用支持双向数据流的channel创建客户端
+final channel = WebSocketChannel.connect(Uri.parse('ws://localhost:8889/ws'));
+final jsonRpcClient = JsonRpcClient(channel.cast<String>());
+final client = YourServiceJsonClient(jsonRpcClient);
+
+// 调用方法 (只支持一元调用)
+final response = await client.yourMethod(request);
+```
+
+## 补充说明
+
+- 支持标准的Protocol Buffers消息序列化
+- 支持标准的gRPC错误处理机制
+- 可以在任何支持双向数据流的channel上工作
+
+有关更多示例和详细用法，请查看 `/example` 目录。
