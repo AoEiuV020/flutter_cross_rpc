@@ -1,5 +1,3 @@
-// ignore_for_file: implementation_imports
-
 import 'dart:async';
 import 'dart:convert';
 
@@ -20,10 +18,6 @@ class JsonServer {
     for (final service in services) {
       _services[service.$name] = service;
     }
-  }
-
-  Future<void> serve(StreamChannel<String> channel) {
-    return serveJsonRpcService(JsonRpcService.fromSingleStream(channel));
   }
 
   Future<List<String>> _handleRpcRequest(Parameters parameters) async {
@@ -60,18 +54,28 @@ class JsonServer {
     return [responseBase64];
   }
 
-  Future<void> serveJsonRpcService(JsonRpcService jsonRpcService) async {
-    jsonRpcService.registerFallback((Parameters parameters) async {
-      try {
-        return await _handleRpcRequest(parameters);
-      } on GrpcError catch (e) {
-        throw RpcException(
-          SERVER_ERROR,
-          e.message ?? 'Unknown gRPC error',
-          data: {GrpcErrorUtils.grpcErrorKey: GrpcErrorUtils.serialize(e)},
-        );
-      }
-    });
-    jsonRpcService.listen();
+  Future<void> serve(StreamChannel<String> channel) {
+    return serveServer(JsonRpcServer(channel));
+  }
+
+  Future<void> serveServer(JsonRpcServer server) async {
+    server.registerFallback(
+      (Parameters parameters) async {
+            try {
+              return await _handleRpcRequest(parameters);
+            } on GrpcError catch (e) {
+              throw RpcException(
+                SERVER_ERROR,
+                e.message ?? 'Unknown gRPC error',
+                data: {
+                  GrpcErrorUtils.grpcErrorKey: GrpcErrorUtils.serialize(e),
+                },
+              );
+            }
+          }
+          as dynamic, // 这里返回值要求是void不对，可以有返回值的，
+    );
+    // 这里不await，因为serve参考grpc是成功启动就返回，而jsonRpc里的listen是关闭后才返回，
+    server.listen();
   }
 }

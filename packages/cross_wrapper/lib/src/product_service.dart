@@ -64,18 +64,18 @@ class ProductServiceAdapter extends ProductServiceBase {
 class ProductServiceJsonClient extends ProductServiceClient
     with JsonClientMixin {
   @override
-  final JsonRpcService jsonRpcService;
+  final JsonRpcClient jsonRpcClient;
 
   /// 使用已存在的 JsonRpcService 创建客户端
-  ProductServiceJsonClient(this.jsonRpcService)
+  ProductServiceJsonClient(this.jsonRpcClient)
     : super(JsonClientMixin.channel) {
-    jsonRpcService.listen();
+    jsonRpcClient.listen();
   }
 
   /// 使用 StreamChannel 创建客户端
   ProductServiceJsonClient.create(StreamChannel<String> channel)
-    : jsonRpcService = JsonRpcService.fromSingleStream(channel),
+    : jsonRpcClient = JsonRpcClient(channel),
       super(JsonClientMixin.channel) {
-    jsonRpcService.listen();
+    jsonRpcClient.listen();
   }
 }

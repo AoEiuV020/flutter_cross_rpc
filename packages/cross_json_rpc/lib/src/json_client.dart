@@ -9,7 +9,7 @@ import 'stub_client_channel.dart';
 import 'stub_response_future.dart';
 
 mixin JsonClientMixin on Client {
-  JsonRpcService get jsonRpcService;
+  JsonRpcClient get jsonRpcClient;
   static const StubClientChannel channel = StubClientChannel();
   @override
   ResponseFuture<R> $createUnaryCall<Q, R>(
@@ -25,7 +25,7 @@ mixin JsonClientMixin on Client {
     final requestBase64 = base64Encode(requestBytes);
     final dynamic responseBase64List;
     try {
-      responseBase64List = await jsonRpcService.sendRequest(method.path, [
+      responseBase64List = await jsonRpcClient.sendRequest(method.path, [
         requestBase64,
       ]);
     } on RpcException catch (e) {
