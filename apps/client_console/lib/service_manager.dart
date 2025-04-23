@@ -2,6 +2,7 @@ import 'package:cross_proto/cross_proto.dart';
 import 'package:cross_server/cross_server.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc_over_json_rpc/grpc_over_json_rpc.dart';
+import 'package:stream_channel/stream_channel.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ServiceManager {
@@ -11,6 +12,7 @@ class ServiceManager {
   // 默认服务器地址
   static const defaultGrpcServer = 'localhost:8888';
   static const defaultWsServer = 'ws://localhost:8889/ws';
+  static const defaultHttpServer = 'http://localhost:8887/jsonrpc';
 
   void addLocalService() {
     final name = 'local-${services.length + 1}';
@@ -45,6 +47,19 @@ class ServiceManager {
     services[name] = client;
     _cleanupCallbacks[name] = jsonRpcClient.close;
     print('已添加WebSocket服务: $name ($server)');
+  }
+
+  Future<void> addHttpService(String server) async {
+    final uri = Uri.parse(server);
+    StreamChannel<String> channel;
+    // TODO: 创建channel,
+    final jsonRpcClient = JsonRpcClient(HttpJsonRpcStreamChannel(uri));
+
+    final name = 'http-${services.length + 1}';
+    final client = ProductServiceJsonClient(jsonRpcClient);
+    services[name] = client;
+    _cleanupCallbacks[name] = jsonRpcClient.close;
+    print('已添加HTTP服务: $name ($server)');
   }
 
   void printServiceList() {

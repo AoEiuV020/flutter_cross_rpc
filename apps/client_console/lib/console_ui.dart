@@ -6,7 +6,8 @@ class ConsoleUI {
     print('1. 添加本地服务实现');
     print('2. 添加gRPC服务');
     print('3. 添加WebSocket服务');
-    print('4. 查看已添加的服务');
+    print('4. 添加http服务');
+    print('9. 查看已添加的服务');
     print('0. 开始测试');
     print('q. 退出程序');
   }

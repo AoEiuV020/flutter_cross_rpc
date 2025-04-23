@@ -28,5 +28,11 @@
             "request": "launch",
             "type": "dart"
         },
+        {
+            "name": "server_http",
+            "cwd": "apps/server_http",
+            "request": "launch",
+            "type": "dart"
+        },
     ]
 }

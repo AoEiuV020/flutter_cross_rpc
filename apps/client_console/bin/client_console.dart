@@ -5,7 +5,7 @@ void main() async {
 
   while (true) {
     ConsoleUI.printMenu();
-    final choice = ConsoleUI.readUserInput('请选择操作 (0-4): ', defaultValue: '');
+    final choice = ConsoleUI.readUserInput('请选择操作: ', defaultValue: '');
 
     try {
       switch (choice) {
@@ -24,6 +24,12 @@ void main() async {
           );
           await serviceManager.addWsService(server);
         case '4':
+          final server = ConsoleUI.readUserInput(
+            '请输入http服务器地址: ',
+            defaultValue: ServiceManager.defaultHttpServer,
+          );
+          await serviceManager.addHttpService(server);
+        case '9':
           serviceManager.printServiceList();
         case '0':
           if (serviceManager.allServices.isEmpty) {

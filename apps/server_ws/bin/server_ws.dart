@@ -33,7 +33,6 @@ void main(List<String> args) async {
       .transform(WebSocketTransformer())
       .map(IOWebSocketChannel.new);
   connectedChannels.listen((WebSocketChannel socket) {
-    final jsonRpcServer = JsonRpcServer(socket.cast<String>());
-    server.serveServer(jsonRpcServer);
+    server.serve(socket.cast<String>());
   });
 }
