@@ -10,7 +10,7 @@ void main() async {
   print('WebSocket 连接成功建立');
   var jsonRpcClient = JsonRpcClient(socket.cast<String>());
 
-  print('创建 ProductService 客户端存根...');
+  print('创建 ProductService 客户端...');
   final ProductService stub = ProductServiceWrapper(
     ProductServiceJsonClient(jsonRpcClient),
   );
