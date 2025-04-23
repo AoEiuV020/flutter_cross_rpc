@@ -13,7 +13,7 @@ dependencies:
   grpc: any
   stream_channel: any
   web_socket_channel: any
-  http: any
+  dio: ^5.4.0
 
 dev_dependencies:
   lints: ^5.0.0

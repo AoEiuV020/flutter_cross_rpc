@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:cross_proto/cross_proto.dart';
 import 'package:cross_server/cross_server.dart';
+import 'package:dio/dio.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc_over_json_rpc/grpc_over_json_rpc.dart';
-import 'package:http/http.dart' as http;
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ServiceManager {
@@ -53,18 +53,21 @@ class ServiceManager {
 
   Future<void> addHttpService(String server) async {
     final uri = Uri.parse(server);
-    final httpClient = http.Client();
+    final dio = Dio();
     final jsonRpcClient = JsonRpcClient(
       JsonRpcStreamChannel(
-        (message) => httpClient
+        (message) => dio
             .post(
-              uri,
-              headers: {'Content-Type': 'application/json'},
-              body: message,
+              uri.toString(),
+              data: message,
+              options: Options(
+                headers: {'Content-Type': 'application/json'},
+                responseType: ResponseType.plain,
+              ),
             )
             .then((response) {
               if (response.statusCode == 200) {
-                return response.body;
+                return response.data as String;
               } else {
                 throw Exception('HTTP请求失败: ${response.statusCode}');
               }
@@ -76,7 +79,7 @@ class ServiceManager {
     final client = ProductServiceJsonClient(jsonRpcClient);
     services[name] = client;
     _cleanupCallbacks[name] = () async {
-      httpClient.close();
+      dio.close();
       await jsonRpcClient.close();
     };
     print('已添加HTTP服务: $name ($server)');
